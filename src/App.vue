@@ -1,9 +1,17 @@
 <template>
-  <div class="px-5 mx-auto mt-5 justify-center container">
-    <input type="text" v-model="room" />
-    <input type="checkbox" name="rtc" id="rtc" v-model="irtc">
-    <video v-show="irtc" id="video-webrtc" controls></video>
+  <div class="mx-auto max-w-7xl xl:mt-5 justify-center container">
+    <video v-show="irtc" class="min-w-full" id="video-webrtc" controls></video>
     <div v-show="!irtc" id="video-flv"></div>
+    <div class="mx-4 mt-4 flex justify-between">
+      <div>
+        <span class="label-text">房间号：</span>
+        <input type="text" class="input input-bordered max-w-xs" v-model="room" />
+      </div>
+      <label class="label cursor-pointer">
+        <span class="label-text">WebRTC Mode：</span>
+        <input type="checkbox" name="rtc" id="rtc" v-model="irtc" class="toggle" checked />
+      </label>
+    </div>
   </div>
 </template>
 
@@ -12,7 +20,7 @@ import DPlayer from "dplayer";
 import { onMounted, ref, watch } from "vue";
 
 let room = ref("djkcyl");
-let irtc = ref(false);
+let irtc = ref(true);
 
 watch(room, () => apply());
 watch(irtc, () => apply());
