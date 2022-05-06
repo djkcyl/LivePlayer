@@ -3,7 +3,7 @@
     <input type="text" v-model="room" />
     <input type="checkbox" name="rtc" id="rtc" v-model="irtc">
     <video v-show="irtc" id="video-webrtc" controls></video>
-    <div  v-show="!irtc" id="video-flv"></div>
+    <div v-show="!irtc" id="video-flv"></div>
   </div>
 </template>
 
