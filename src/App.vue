@@ -1,21 +1,24 @@
 <template>
   <div class="px-5 m-auto mt-5 flex justify-center">
+    <input type="text" v-model="room" />
+    <input type="radio" name="rtc" id="rtc">
+    <input type="radio" name="flv" id="flv">
     <video id="video-webrtc" controls></video>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { onMounted, ref } from "vue";
+<script lang="js" setup>
+import { onMounted, ref, watch } from "vue";
+import DPlayer from 'dplayer';
 
-const room = ref("djkcyl");
-onMounted(() => {
+let room = ref("djkcyl");
+watch(room,()=>{
   const video = document.getElementById("video-webrtc");
-  const player = new JSWebrtc.Player("webrtc://a60.one/live/" + room.value, {
-    video: video,
-    autoplay: true,
-    onPlay: () => {
-      document.title = "▶️ 当前直播 " + room.value;
-    },
+  const dp = DPlayer({
+    container: video,
+video:{
+url:room
+}
   });
-});
+})
 </script>
